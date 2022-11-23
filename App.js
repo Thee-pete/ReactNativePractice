@@ -1,23 +1,24 @@
-import {StyleSheet, Text, TouchableOpacity, View, Button} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import ViewImageScreen from './android/app/screens/ViewImageScreen';
+import WelcomeScreen from './android/app/screens/WelcomeScreen';
 
+const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text> Hello World!</Text>
-      <TouchableOpacity>
-        <View>
-        <Button title="Click me" />
-        </View>
-      </TouchableOpacity>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="home"
+          component={WelcomeScreen}
+          options={{title: 'Welcome'}}
+        />
+        <Stack.Screen
+          name="login"
+          component={ViewImageScreen}
+          options={{title: 'image'}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
